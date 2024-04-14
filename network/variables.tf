@@ -1,6 +1,6 @@
 variable "app" {
     description = "Application Name"
-    default = 'application"
+    default = "application"
 }
 
 variable "vpc_cidr_block" {
