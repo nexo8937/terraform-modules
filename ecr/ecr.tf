@@ -4,7 +4,7 @@
 
 resource "aws_ecr_repository" "ecr-repo" {
   count                = length(var.ecr-repo-name) 
-  name                 = var.ecr-repo-name
+  name                 = var.ecr_repo_name
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
