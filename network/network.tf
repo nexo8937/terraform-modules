@@ -86,7 +86,7 @@ resource "aws_route_table" "private_route" {
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat-gw[count.index].id
+    nat_gateway_id = aws_nat_gateway.nat-gw[count.index].id
   }
   tags = {
     Name = "${var.app}-private-route-${count.index + 1}"
