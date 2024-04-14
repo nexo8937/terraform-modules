@@ -76,7 +76,7 @@ resource "aws_route_table" "public_route" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${var.app}-public-route-${count.index + 1}"
+    Name = "${var.app}-public-route"
   }
 }
 
