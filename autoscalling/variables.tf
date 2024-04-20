@@ -58,7 +58,7 @@ variable "app_port_sg" {
     default = [""]
 }
 
-variable "target-group" {
+variable "target_group" {
     description = "load balancer target group"
     default = ""
 }
