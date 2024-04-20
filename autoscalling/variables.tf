@@ -30,17 +30,17 @@ variable "vpc" {
 # autoscalling-policy
 variable "desired_capacity" {
     description = "Desired capacity of the autoscaling group"
-    default = 
+    default = ""
 }
 
 variable "max_size" {
     description = "Maximum size of the autoscaling group"
-    default = 
+    default = ""
 }
 
 variable "min_size" {
     description = "Minimum size of the autoscaling group"
-    default = 
+    default = ""
 }
 
 variable "healthy_check_type" {
@@ -72,7 +72,7 @@ variable "policy_cooldown" {
 
 variable "down_scaling_adjustment" {
   description = "The scaling adjustment for the autoscaling policy when scaling down"
-  default     = 
+  default     = ""
 }
 
 # CloudWatch Metrics
