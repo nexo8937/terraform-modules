@@ -26,7 +26,7 @@ resource "aws_autoscaling_group" "autoscaling-group" {
   max_size                  = var.max_size
   min_size                  = var.min_size
   health_check_type         = var.healthy_check_type
-  vpc_zone_identifier       = [var.private_subnets]
+  vpc_zone_identifier       = var.private_subnets
 #  target_group_arns         = [aws_lb_target_group.target-group.arn]
   launch_template {
     id      = aws_launch_template.launch-template.id
