@@ -11,7 +11,7 @@ resource "aws_launch_template" "launch-template" {
   user_data              = base64encode(file("${var.user-data-file}"))
 
   iam_instance_profile {
-    name = "var.aws_iam_instance_profile"
+    name = var.aws_iam_instance_profile
   }
 
   lifecycle {
