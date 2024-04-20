@@ -18,7 +18,7 @@ variable "public_subnets" {
 variable "app_lb_port_sg" {
     description = "Loadbalancer security group ports"
     type = list
-    default = ""
+    default = [""]
 }
 
 variable "lb_listner_port" {
