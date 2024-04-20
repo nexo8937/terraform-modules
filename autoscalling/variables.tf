@@ -3,6 +3,7 @@ variable "app" {
     default = ""
 }
 
+# launch-template
 variable "image_id" {
     default = ""
 }
@@ -15,6 +16,7 @@ variable "aws_iam_instance_profile" {
     default = ""
 }
 
+# network
 variable "private_subnets" {
   description = "Private Subnets for autoscalling group"
   default = ""
@@ -25,37 +27,37 @@ variable "vpc" {
   default = ""
 }
 
-###############################################################
+# autoscalling-policy
 variable "desired_capacity" {
     description = "Desired capacity of the autoscaling group"
-    default = 1
+    default = 
 }
 
 variable "max_size" {
     description = "Maximum size of the autoscaling group"
-    default = 2
+    default = 
 }
 
 variable "min_size" {
     description = "Minimum size of the autoscaling group"
-    default = 1
+    default = 
 }
 
 variable "healthy_check_type" {
   description = "The type of healty check"
-  default = "ELB"
+  default = ""
 }
 
 variable "app_port_sg" {
     description = "Autoscaling security group ports"
     type = list
-    default = ["3000"]
+    default = [""]
 }
 
-#Autoscaling Policie
+# Autoscaling Policie
 variable "policy_adjustment_type" {
   description = "The adjustment type for the autoscaling policy"
-  default     = "ChangeInCapacity"
+  default     = ""
 }
 
 variable "policy_scaling_adjustment" {
@@ -65,36 +67,36 @@ variable "policy_scaling_adjustment" {
 
 variable "policy_cooldown" {
   description = "The cooldown period for the autoscaling policy "
-  default     = "300"
+  default     = ""
 }
 
 variable "down_scaling_adjustment" {
   description = "The scaling adjustment for the autoscaling policy when scaling down"
-  default     = -1
+  default     = 
 }
 
-#CloudWatch Metrics
+# CloudWatch Metrics
 variable "scale_up_threshold" {
   description = "CPU utilization threshold for triggering scale-up actions"
-  default = "80"
+  default = ""
 }
 
 variable "scale_down_threshold" {
   description = "CPU utilization threshold for triggering scale-down actions"
-  default = "20"
+  default = ""
 }
 
 variable "scale_up_period" {
   description = "The period (in seconds) for evaluating CPU utilization during scale-up"
-  default = "120"
+  default = ""
 }
 
 variable "scale_down_period" {
   description = "The period (in seconds) for evaluating CPU utilization during scale-down"
-  default = "120"
+  default = ""
 }
 
 variable "evaluation_periods" {
   description = "The number of periods for applying the alarm's statistic"
-  default = "2"
+  default = ""
 }
