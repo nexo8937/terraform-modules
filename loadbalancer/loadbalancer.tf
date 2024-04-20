@@ -6,7 +6,7 @@ resource "aws_lb" "load-balancer" {
   name                 = "${var.app}-load-balancer"
   load_balancer_type   = var.load_balancer_type
   security_groups      = [aws_security_group.lb-sg.id]
-  subnets              = [var.public_subnets]
+  subnets              = var.public_subnets
 }
 
 resource "aws_lb_target_group" "target-group" {
