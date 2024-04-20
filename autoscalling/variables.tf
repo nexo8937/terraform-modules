@@ -31,7 +31,7 @@ variable "vpc" {
   default = ""
 }
 
-# autoscalling-policy
+# autoscalling-group
 variable "desired_capacity" {
     description = "Desired capacity of the autoscaling group"
     default = ""
@@ -56,6 +56,11 @@ variable "app_port_sg" {
     description = "Autoscaling security group ports"
     type = list
     default = [""]
+}
+
+variable "target-group" {
+    description = "load balancer target group"
+    default = ""
 }
 
 # Autoscaling Policie
