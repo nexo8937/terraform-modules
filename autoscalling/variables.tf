@@ -16,6 +16,10 @@ variable "aws_iam_instance_profile" {
     default = ""
 }
 
+variable "user-data-file" {
+    default = ""
+}
+
 # network
 variable "private_subnets" {
   description = "Private Subnets for autoscalling group"
