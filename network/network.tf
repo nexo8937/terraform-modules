@@ -37,7 +37,7 @@ resource "aws_subnet" "private_subnets" {
 }
 
 #Database Subnets
-resource "aws_subnet" "private_subnets" {
+resource "aws_subnet" "db_subnets" {
   count                   = length(var.db_subnet_ciders)
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = element(var.db_subnet_ciders, count.index)
