@@ -6,10 +6,6 @@ variable "cluster_version" {
     default = ""
 }
 
-variable "cluster_version" {
-    default = ""
-}
-
 variable "private_subnets" {
     default = ""
 }
