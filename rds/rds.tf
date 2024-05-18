@@ -1,7 +1,7 @@
 #Database Subnet Group
 resource "aws_db_subnet_group" "db-subnetgroup" {
   name       = "${var.app}-db-subnet-group"
-  subnet_ids = [var.db-subnets]
+  subnet_ids = var.db-subnets
 
   tags = {
     Name = "${var.app}-db-subnet-group"
