@@ -7,7 +7,7 @@ resource "aws_launch_template" "launch-template" {
   name                   = "${var.app}-launch-template"
   image_id               = var.image_id
   instance_type          = var.instance_type
-  vpc_security_group_ids = [aws_security_group.autoscaling-sg.id]
+  vpc_security_group_ids = [aws_security_group.autoscaling-sg.id , var.database_sg]
   user_data              = base64encode(file("${var.user-data-file}"))
 
   iam_instance_profile {
