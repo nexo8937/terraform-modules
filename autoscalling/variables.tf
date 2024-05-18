@@ -16,6 +16,11 @@ variable "aws_iam_instance_profile" {
     default = ""
 }
 
+variable "database_sg" {
+    default = ""
+}
+
+
 variable "user-data-file" {
     default = ""
 }
