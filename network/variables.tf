@@ -19,3 +19,10 @@ variable "private_subnet_ciders" {
       ""
   ]
 }
+
+variable "db_subnet_ciders" {
+   default = [
+      ""
+  ]
+}
+
