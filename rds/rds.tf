@@ -31,7 +31,8 @@ resource "aws_security_group" "rds" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.rds-access.id]
+    cidr_blocks = ["10.0.0.0/16"]
+#    security_groups = [aws_security_group.rds-access.id]
   }
 
   egress {
@@ -47,11 +48,11 @@ resource "aws_security_group" "rds" {
 }
 
 #DataBase Access Security Group
-resource "aws_security_group" "rds-access" {
-  name   = "${var.app}-rds-access-sg"
-  vpc_id = var.vpc
+#resource "aws_security_group" "rds-access" {
+#  name   = "${var.app}-rds-access-sg"
+#  vpc_id = var.vpc
 
-  tags = {
-    Name = "${var.app}-rds-access-sg"
-  }
-  }
+#  tags = {
+#    Name = "${var.app}-rds-access-sg"
+#  }
+#  }
