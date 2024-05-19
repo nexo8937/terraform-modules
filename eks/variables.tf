@@ -13,3 +13,19 @@ variable "private_subnets" {
 variable "public_subnets" {
     default = ""
 }
+
+variable "instance_type" {
+    default = ""
+}
+
+variable "desired_size" {
+    default = ""
+}
+
+variable "max_size" {
+    default = ""
+}
+
+variable "min_size" {
+    default = ""
+}
