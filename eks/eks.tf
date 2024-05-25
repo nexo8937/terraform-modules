@@ -1,6 +1,6 @@
 #EKS Role
 resource "aws_iam_role" "cluster_role" {
-  name               = "${var.app}-cluster-role"
+  name               = "${var.app}-cluster-role-${var.env}"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -26,14 +26,13 @@ resource "aws_iam_role_policy_attachment" "eks-AmazonEKSClusterPolicy" {
 
 #EKS Cluster
 resource "aws_eks_cluster" "eks_cluster" {
-  name     = "${var.app}-cluster"
+  name     = "${var.app}-cluster-${var.env}"
   role_arn = aws_iam_role.cluster_role.arn
   version  = var.cluster_version
 
 
   vpc_config {
     subnet_ids         =  concat(var.private_subnets, var.public_subnets)
-#    security_group_ids = ["sg-12345678"]  
     endpoint_public_access = true
   }
 
@@ -59,7 +58,7 @@ resource "aws_eks_addon" "vpc_cni" {
 
 #NodeGroup
 resource "aws_iam_role" "nodes" {
-  name = "eks-node-group-nodes"
+  name = "${var.app}-eks-node-group-role-${var.env}"
 
   assume_role_policy = jsonencode({
     Statement = [{
@@ -92,7 +91,7 @@ resource "aws_iam_role_policy_attachment" "nodes-AmazonEC2ContainerRegistryReadO
 #NodeGroup
 resource "aws_eks_node_group" "private-nodes" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
-  node_group_name = "private-nodes"
+  node_group_name = "${var.app}-eks-node-group-${var.env}"
   node_role_arn   = aws_iam_role.nodes.arn
   subnet_ids      = var.private_subnets
   capacity_type   = "ON_DEMAND"
