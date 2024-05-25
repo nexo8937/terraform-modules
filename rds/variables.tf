@@ -35,6 +35,10 @@ variable "app" {
     default = ""
 }
 
+variable "db-subnets-group-name" {
+    default = ""
+}
+
 variable "env" {
     default = ""
 }
