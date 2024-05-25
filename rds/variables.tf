@@ -34,3 +34,7 @@ variable "engine" {
 variable "app" {
     default = ""
 }
+
+variable "env" {
+    default = ""
+}
