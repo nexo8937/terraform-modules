@@ -57,42 +57,23 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-#Elastic Ip for Nat
+#Elastic IPs
 resource "aws_eip" "elastic-ip" {
+  count = length(var.private_subnet_ciders)
   tags = {
-    Name = "ip for NAT"
+    Name = "${var.app}-elastic-ip-${count.index + 1}"
   }
 }
 
-
-#Create NAT gateway
+#NAT gateways
 resource "aws_nat_gateway" "nat-gw" {
-  allocation_id = aws_eip.elastic-ip.id
-  subnet_id     = aws_subnet.public_subnets[0].id
-  tags = {
-    Name = "${var.app}-nat-gateway"
+  count         = length(var.private_subnet_ciders)
+ allocation_id = aws_eip.elastic-ip[count.index].id
+  subnet_id     = element(aws_subnet.public_subnets[*].id, count.index)
+ tags = {
+    Name = "${var.app}-nat-gateway-${count.index + 1}"
   }
 }
-
-
-
-####Elastic IPs
-#resource "aws_eip" "elastic-ip" {
-#  count = length(var.private_subnet_ciders)
-#  tags = {
-#    Name = "${var.app}-elastic-ip-${count.index + 1}"
-#  }
-#}
-
-####NAT gateways
-#resource "aws_nat_gateway" "nat-gw" {
-#  count         = length(var.private_subnet_ciders)
-# allocation_id = aws_eip.elastic-ip[count.index].id
-#  subnet_id     = element(aws_subnet.public_subnets[*].id, count.index)
-# tags = {
-#    Name = "${var.app}-nat-gateway-${count.index + 1}"
-#  }
-#}
 
 
 #----------------ROUTE TABLES & ASSOCIATIONS----------------
