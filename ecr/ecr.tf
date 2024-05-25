@@ -9,6 +9,11 @@ resource "aws_ecr_repository" "ecr-repo" {
   image_scanning_configuration {
     scan_on_push = true
   }
+
+  tags = {
+    Name = "${var.app}-ecr-${var.env}"
+  }
+
 }
 
 
