@@ -1,10 +1,10 @@
 #Database Subnet Group
 resource "aws_db_subnet_group" "db-subnetgroup" {
-  name       = "db subnet group"
+  name       = var.db-subnets-group-name
   subnet_ids = var.db-subnets
 
   tags = {
-    Name = "${var.app}-db-subnet-group"
+    Name = "${var.app}-db-subnet-group-${var.env}"
   }
 }
 
@@ -24,7 +24,7 @@ resource "aws_db_instance" "db" {
 
 #DataBase Security Group
 resource "aws_security_group" "rds" {
-  name   = "${var.app}-rds-sg"
+  name   = "${var.app}-rds-sg-${var.env}"
   vpc_id = var.vpc
 
   ingress {
@@ -43,16 +43,16 @@ resource "aws_security_group" "rds" {
   }
 
   tags = {
-    Name = "${var.app}-rds-sg"
+    Name = "${var.app}-rds-sg-${var.env}"
   }
 }
 
 #DataBase Access Security Group
 #resource "aws_security_group" "rds-access" {
-#  name   = "${var.app}-rds-access-sg"
+#  name   = "${var.app}-rds-access-sg-${var.env}"
 #  vpc_id = var.vpc
 
 #  tags = {
-#    Name = "${var.app}-rds-access-sg"
+#    Name = "${var.app}-rds-access-sg-${var.env}"
 #  }
 #  }
