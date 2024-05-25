@@ -7,3 +7,8 @@ variable "app" {
     description = "Application Name"
     default = ""
 }
+
+variable "env" {
+    description = "Enviormant"
+    default = ""
+}
