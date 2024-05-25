@@ -7,7 +7,7 @@ data "aws_availability_zones" "working" {}
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr_block
   tags = {
-    Name = "${var.app}-vpc"
+    Name = "${var.app}-vpc-${var.env}"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_subnet" "public_subnets" {
   availability_zone       = data.aws_availability_zones.working.names[count.index]
   map_public_ip_on_launch = true
   tags = {
-    "Name" = "${var.app}-public-subnet-${count.index + 1}"
+    "Name" = "${var.app}-public-subnet-${count.index + 1}-${var.env}"
   }
 }
 
@@ -32,7 +32,7 @@ resource "aws_subnet" "private_subnets" {
   cidr_block              = element(var.private_subnet_ciders, count.index)
   availability_zone       = data.aws_availability_zones.working.names[count.index]
   tags = {
-    "Name" = "${var.app}-private-subnet-${count.index + 1}"
+    "Name" = "${var.app}-private-subnet-${count.index + 1}-${var.env}"
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_subnet" "db_subnets" {
   cidr_block              = element(var.db_subnet_ciders, count.index)
   availability_zone       = data.aws_availability_zones.working.names[count.index]
   tags = {
-    "Name" = "${var.app}-db-subnet-${count.index + 1}"
+    "Name" = "${var.app}-db-subnet-${count.index + 1}-${var.env}-${var.env}"
   }
 }
 
@@ -53,7 +53,7 @@ resource "aws_subnet" "db_subnets" {
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "${var.app}-intenet-gateway"
+    Name = "${var.app}-intenet-gateway-${var.env}"
   }
 }
 
@@ -61,7 +61,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_eip" "elastic-ip" {
   count = length(var.private_subnet_ciders)
   tags = {
-    Name = "${var.app}-elastic-ip-${count.index + 1}"
+    Name = "${var.app}-elastic-ip-${count.index + 1}-${var.env}"
   }
 }
 
@@ -71,7 +71,7 @@ resource "aws_nat_gateway" "nat-gw" {
  allocation_id = aws_eip.elastic-ip[count.index].id
   subnet_id     = element(aws_subnet.public_subnets[*].id, count.index)
  tags = {
-    Name = "${var.app}-nat-gateway-${count.index + 1}"
+    Name = "${var.app}-nat-gateway-${count.index + 1}-${var.env}"
   }
 }
 
@@ -86,7 +86,7 @@ resource "aws_route_table" "public_route" {
     gateway_id = aws_internet_gateway.igw.id
   }
   tags = {
-    Name = "${var.app}-public-route"
+    Name = "${var.app}-public-route-${var.env}"
   }
 }
 
@@ -99,7 +99,7 @@ resource "aws_route_table" "private_route" {
     nat_gateway_id = aws_nat_gateway.nat-gw[count.index].id
   }
   tags = {
-    Name = "${var.app}-private-route-${count.index + 1}"
+    Name = "${var.app}-private-route-${count.index + 1}-${var.env}"
   }
 }
 
