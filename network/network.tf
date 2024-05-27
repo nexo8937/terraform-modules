@@ -57,23 +57,41 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-#Elastic IPs
+#Elastic IP
 resource "aws_eip" "elastic-ip" {
-  count = length(var.private_subnet_ciders)
   tags = {
-    Name = "${var.app}-elastic-ip-${count.index + 1}-${var.env}"
+    Name = "${var.app}-elastic-ip-${var.env}"
   }
 }
 
-#NAT gateways
+#NAT gateway
 resource "aws_nat_gateway" "nat-gw" {
-  count         = length(var.private_subnet_ciders)
- allocation_id = aws_eip.elastic-ip[count.index].id
-  subnet_id     = element(aws_subnet.public_subnets[*].id, count.index)
- tags = {
-    Name = "${var.app}-nat-gateway-${count.index + 1}-${var.env}"
+  allocation_id = aws_eip.elastic-ip.id
+  subnet_id     = element(aws_subnet.public_subnets[*].id, 0) 
+  tags = {
+    Name = "${var.app}-nat-gateway-${var.env}"
   }
 }
+
+
+
+###Elastic IPs
+#resource "aws_eip" "elastic-ip" {
+#  count = length(var.private_subnet_ciders)
+#  tags = {
+#    Name = "${var.app}-elastic-ip-${count.index + 1}-${var.env}"
+#  }
+#}
+
+###NAT gateways
+#resource "aws_nat_gateway" "nat-gw" {
+#  count         = length(var.private_subnet_ciders)
+# allocation_id = aws_eip.elastic-ip[count.index].id
+#  subnet_id     = element(aws_subnet.public_subnets[*].id, count.index)
+# tags = {
+#    Name = "${var.app}-nat-gateway-${count.index + 1}-${var.env}"
+#  }
+#}
 
 
 #----------------ROUTE TABLES & ASSOCIATIONS----------------
@@ -96,7 +114,8 @@ resource "aws_route_table" "private_route" {
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat-gw[count.index].id
+    nat_gateway_id = aws_nat_gateway.nat-gw.id
+#    nat_gateway_id = aws_nat_gateway.nat-gw[count.index].id
   }
   tags = {
     Name = "${var.app}-private-route-${count.index + 1}-${var.env}"
