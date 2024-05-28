@@ -17,3 +17,9 @@ variable "release_name" {
   description = "Name of the Helm release"
   type        = string
 }
+
+variable "namespace" {
+  description = "Kubernetes namespace to deploy to"
+  type        = string
+  default     = "default"
+}
