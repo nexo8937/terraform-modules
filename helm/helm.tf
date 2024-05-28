@@ -4,7 +4,7 @@ resource "helm_release" "application" {
   namespace  = "var.namespace
 
 values = [
-  file("../helm/values_dev.yaml")
+  var.values
 ]
 
 set {
