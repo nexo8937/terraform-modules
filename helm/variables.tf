@@ -3,7 +3,7 @@ variable "name" {
     default = ""
 }
 
-variable "env" {
+variable "chart" {
     default = ""
 }
 
