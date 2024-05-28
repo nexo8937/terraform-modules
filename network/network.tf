@@ -43,7 +43,7 @@ resource "aws_subnet" "db_subnets" {
   cidr_block              = element(var.db_subnet_ciders, count.index)
   availability_zone       = data.aws_availability_zones.working.names[count.index]
   tags = {
-    "Name" = "${var.app}-db-subnet-${count.index + 1}-${var.env}-${var.env}"
+    "Name" = "${var.app}-db-subnet-${count.index + 1}-${var.env}"
   }
 }
 
