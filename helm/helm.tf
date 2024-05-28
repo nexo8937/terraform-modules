@@ -8,7 +8,7 @@ values = [
   file("../../helm/values_dev.yaml")
 ]
   set {
-    name  = "replicaCount"
+    name  = "replicacount"
     value = var.replica_count
   }
 
