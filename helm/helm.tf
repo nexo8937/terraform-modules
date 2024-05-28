@@ -7,14 +7,10 @@ resource "helm_release" "my_application" {
 values = [
   file("../../helm/values_dev.yaml")
 ]
-  # Or directly set values
   set {
     name  = "replicaCount"
-    value = "3"
+    value = var.replica_count
   }
-
-
-
 
   set {
     name  = "container.name"
