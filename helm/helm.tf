@@ -1,5 +1,5 @@
 resource "helm_release" "my_application" {
-  name       = "my-release-name"
+  name       = var.release_name
   chart      = "../../helm"  # Path to your local Helm chart
   namespace  = "default"  # Kubernetes namespace to deploy to
 
