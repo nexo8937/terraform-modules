@@ -13,4 +13,18 @@ values = [
     value = "3"
   }
 
+
+
+
+  set {
+    name  = "container.name"
+    value = var.container_name
+  }
+
+  set {
+    name  = "container.image"
+    value = var.container_image
+  }
+
+
 }
