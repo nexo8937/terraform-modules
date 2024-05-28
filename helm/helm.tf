@@ -1,7 +1,7 @@
 resource "helm_release" "my_application" {
   name       = var.release_name
   chart      = "../../helm"  # Path to your local Helm chart
-  namespace  = kubernetes_namespace.namespace.metadata[0].name
+#  namespace  = kubernetes_namespace.namespace.metadata[0].name
 
 values = [
   file("../../helm/values_dev.yaml")
@@ -24,9 +24,3 @@ values = [
 
 }
 
-
-resource "kubernetes_namespace" "namespace" {
-  metadata {
-    name = var.namespace
-  }
-}
