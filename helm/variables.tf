@@ -7,6 +7,6 @@ variable "chart" {
     default = ""
 }
 
-variable "cluster_version" {
+variable "replicaCount" {
     default = ""
 }
