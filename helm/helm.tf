@@ -1,7 +1,7 @@
-resource "helm_release" "my_application" {
-  name       = "my-release-name"
-  chart      = "../helm"  # Path to your local Helm chart
-  namespace  = "default"  # Kubernetes namespace to deploy to
+resource "helm_release" "application" {
+  name       = var.name
+  chart      = var.chart
+  namespace  = "var.namespace
 
 values = [
   file("../helm/values_dev.yaml")
@@ -9,6 +9,12 @@ values = [
 
 set {
   name  = "replicaCount"
-  value = "3"
+  value = var.replicaCount
+ }
+}
+
+set {
+  name  = "replicaCount"
+  value = var.replicaCount
  }
 }
