@@ -13,7 +13,7 @@ output "cluster_ca_certificate" {
   value       = aws_eks_cluster.eks_cluster.certificate_authority[0].data
 }
 
-output "token" {
-  description = "The authentication token for the EKS cluster."
-  value       = aws_eks_cluster_auth.eks_cluster.token
-}
+#output "token" {
+#  description = "The authentication token for the EKS cluster."
+#  value       = aws_eks_cluster_auth.eks_cluster.token
+#}
