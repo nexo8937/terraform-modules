@@ -10,3 +10,6 @@ variable "chart" {
 variable "replicaCount" {
     default = ""
 }
+variable "values" {
+    default = ""
+}
