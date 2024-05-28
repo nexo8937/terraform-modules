@@ -1,7 +1,7 @@
 resource "helm_release" "my_application" {
   name       = var.release_name
   chart      = "../../helm"  # Path to your local Helm chart
-  namespace  = var.namespace
+  namespace  = "dev"
 
 values = [
   file("../../helm/values_dev.yaml")
