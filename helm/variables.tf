@@ -23,6 +23,12 @@ variable "helm_chart_path" {
   type        = string
 }
 
+variable "values_file_path" {
+  description = "Path to the values file"
+  type        = string
+}
+
+
 #variable "namespace" {
 #  description = "Kubernetes namespace to deploy to"
 #  type        = string
