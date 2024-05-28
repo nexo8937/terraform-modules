@@ -18,6 +18,11 @@ variable "release_name" {
   type        = string
 }
 
+variable "helm_chart_path" {
+  description = "Path to the local Helm chart"
+  type        = string
+}
+
 #variable "namespace" {
 #  description = "Kubernetes namespace to deploy to"
 #  type        = string
