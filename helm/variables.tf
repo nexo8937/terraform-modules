@@ -1,5 +1,5 @@
 
-variable "app" {
+variable "name" {
     default = ""
 }
 
