@@ -18,8 +18,8 @@ variable "release_name" {
   type        = string
 }
 
-#variable "namespace" {
-#  description = "Kubernetes namespace to deploy to"
-#  type        = string
-#  default     = "default"
-#}
+variable "namespace" {
+  description = "Kubernetes namespace to deploy to"
+  type        = string
+  default     = "default"
+}
