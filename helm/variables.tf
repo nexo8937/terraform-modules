@@ -7,3 +7,8 @@ variable "container_image" {
   description = "Image of the container"
   type        = string
 }
+
+variable "replica_count" {
+  description = "Number of replicas"
+  type        = number
+}
